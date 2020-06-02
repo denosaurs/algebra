@@ -1,0 +1,10 @@
+# ide
+.idea
+
+# os
+.DS_Store
+
+# rust target
+/target
+# wasm-pack target
+/pkg

@@ -1,0 +1,17 @@
+[package]
+name = "numjs"
+version = "0.1.0"
+authors = ["Qu4k <pippo.reds@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+nalgebra = {version = "0.21", features = ["serde-serialize"]}
+serde = "^1.0.59"
+serde_derive = "^1.0.59"
+
+[dependencies.wasm-bindgen]
+version = "0.2"
+features = ["serde-serialize"]
