@@ -2,16 +2,12 @@
 
 // https://rustwasm.github.io/docs/wasm-bindgen/reference/arbitrary-data-with-serde.html
 
-#[macro_use]
+// #[macro_use]
+extern crate nalgebra as na;
+extern crate rand;
 extern crate serde_derive;
 
-extern crate nalgebra as na;
+extern crate js_sys;
+extern crate wasm_bindgen;
 
-use na::Vector3;
-use wasm_bindgen::prelude::*;
-
-#[wasm_bindgen]
-pub fn vector() -> JsValue {
-    let vec = Vector3::new(0.0, 0.0, 1.0);
-    JsValue::from_serde(&vec).unwrap()
-}
+pub mod dmatrix_f32;

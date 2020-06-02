@@ -1,17 +1,19 @@
 [package]
 name = "numjs"
+description = "algebra module for deno"
+repository = "https://github.com/denosaurs/numjs"
+license = ""
 version = "0.1.0"
-authors = ["Qu4k <pippo.reds@gmail.com>"]
+authors = ["Filippo Rossi"]
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-nalgebra = {version = "0.21", features = ["serde-serialize"]}
+nalgebra = {version = "0.21", default-features = false, features = ["serde-serialize", "std"]}
+rand = { version = "0.7", features = ["wasm-bindgen"] }
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+js-sys = "0.3.40"
 serde = "^1.0.59"
 serde_derive = "^1.0.59"
-
-[dependencies.wasm-bindgen]
-version = "0.2"
-features = ["serde-serialize"]

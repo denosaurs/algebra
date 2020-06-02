@@ -1,5 +1,5 @@
 # numjs
 
 ---
-> ⚠️ This project is a working project. Expect breaking changes.
+> ⚠️ This project is work in progress. Expect breaking changes.
 ---
