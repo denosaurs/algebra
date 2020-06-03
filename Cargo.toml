@@ -1,10 +1,10 @@
 [package]
 name = "algebruh"
 description = "algebra module for deno"
-repository = "https://github.com/denosaurs/numjs"
+repository = "https://github.com/denosaurs/algebruh"
 license = ""
 version = "0.1.0"
-authors = ["Filippo Rossi"]
+authors = ["Filippo Rossi", "Elias Sjögreen"]
 edition = "2018"
 
 [lib]
