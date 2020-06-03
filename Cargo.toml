@@ -1,5 +1,5 @@
 [package]
-name = "numjs"
+name = "algebruh"
 description = "algebra module for deno"
 repository = "https://github.com/denosaurs/numjs"
 license = ""

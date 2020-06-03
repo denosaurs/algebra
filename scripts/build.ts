@@ -53,7 +53,7 @@ await run(
   ["wasm-pack", "build", "--target", "web", "--release"],
 );
 
-const wasm = await Deno.readFile("pkg/numjs_bg.wasm");
+const wasm = await Deno.readFile("pkg/algebruh_bg.wasm");
 const compressed = compress(wasm);
 log(
   `compressed wasm using lz4, size reduction: ${wasm.length -
@@ -69,7 +69,7 @@ log("inlining wasm in js");
 const source = `import * as lz4 from "https://deno.land/x/lz4@v0.1.0/mod.ts";
                 export const source = lz4.decompress(Uint8Array.from(atob("${encoded}"), c => c.charCodeAt(0)));`;
 
-const init = await Deno.readTextFile("pkg/numjs.js");
+const init = await Deno.readTextFile("pkg/algebruh.js");
 
 log("minifying js");
 const output = Terser.minify(`${source}\n${init}`, {
