@@ -18,24 +18,60 @@ export class ndarray<T> {
     throw new Error("not implemented");
   }
 
-  // indexing and slicing
-  idx(index: number | Idx[]) {
-    throw new Error("not implemented");
-  }
-  slice(info: RangeOrIndex[]) {
+  len(): number {
     throw new Error("not implemented");
   }
 
-  reshape(shape: Shape) {
+  shape(): Shape {
     throw new Error("not implemented");
   }
 
-  string() {
+  lenOf(axis: Axis): number {
+    throw new Error("not implemented");
+  }
+
+  strides(): Stride[] {
+    throw new Error("not implemented");
+  }
+
+  empty(): boolean {
+    throw new Error("not implemented");
+  }
+
+  // indexing & slicing
+  idx(index: number | Idx[]): number {
+    throw new Error("not implemented");
+  }
+
+  slice(info: RangeOrIndex[]): ndarray<T> {
+    throw new Error("not implemented");
+  }
+
+  reshape(shape: Shape): ndarray<T> {
+    throw new Error("not implemented");
+  }
+
+  transpose(): ndarray<T> {
+    throw new Error("not implemented");
+  }
+
+  T(): ndarray<T> {
+    return this.transpose();
+  }
+
+  string(): string {
+    throw new Error("not implemented");
+  }
+
+  // operations
+  dot(rhs: ndarray<T>): ndarray<T> {
     throw new Error("not implemented");
   }
 }
 
 export type Shape = number[];
+export type Stride = number;
 export type Idx = number;
+export type Axis = number;
 
 export type RangeOrIndex = number | number[];

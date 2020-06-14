@@ -13,5 +13,8 @@ extern crate wasm_bindgen;
 #[derive(Debug)]
 pub struct AlgebraError;
 
+#[macro_use]
+mod ndarray_helpers;
+
 pub mod ndarray_f32;
 pub mod ndarray_slice;

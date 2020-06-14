@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-import * as ab from "../nd.ts";
+import * as ab from "https://deno.land/x/algebra/nd.ts";
 
 let a = ab.range(0, 2, 0.5);
 console.log(a.string());
