@@ -2,7 +2,11 @@
 .idea
 # os
 .DS_Store
+
 # rust target
-/target
+/linear/target
+/nd/target
+
 # wasm-pack target
-/pkg
+/linear/pkg
+/nd/pkg

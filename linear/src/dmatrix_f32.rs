@@ -82,3 +82,15 @@ pub fn set(matrix: &JsValue, rows: usize, cols: usize, value: f32) -> JsValue {
   mat[(rows, cols)] = value;
   JsValue::from_serde(&mat).unwrap()
 }
+
+#[wasm_bindgen(js_name = dmatrix_f32_max)]
+pub fn max(matrix: &JsValue) -> f32 {
+  let mat: DMatrix<f32> = matrix.into_serde().unwrap();
+  mat.max()
+}
+
+#[wasm_bindgen(js_name = dmatrix_f32_min)]
+pub fn min(matrix: &JsValue) -> f32 {
+  let mat: DMatrix<f32> = matrix.into_serde().unwrap();
+  mat.min()
+}

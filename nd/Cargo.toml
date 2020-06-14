@@ -1,8 +1,8 @@
 [package]
-name = "algebruh"
-description = "algebra module for deno"
-repository = "https://github.com/denosaurs/algebruh"
-license = ""
+name = "algebra_nd"
+description = "Powerful math library for Deno (ndarray bindings)"
+repository = "https://github.com/denosaurs/algebra"
+license = "MIT"
 version = "0.1.0"
 authors = ["Filippo Rossi", "Elias Sjögreen"]
 edition = "2018"
@@ -11,7 +11,8 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-nalgebra = {version = "0.21", default-features = false, features = ["serde-serialize", "std"]}
+ndarray = { version = "0.13.0", features = ["serde"] }
+ndarray-rand = { version = "0.11.0" }
 rand = { version = "0.7", features = ["wasm-bindgen"] }
 wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
 js-sys = "0.3.40"

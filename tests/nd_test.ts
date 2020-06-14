@@ -1,10 +1,3 @@
-# algebra
-
----
-> ⚠️ This project is work in progress. Expect breaking changes.
----
-
-```typescript
 import * as ab from "../nd.ts";
 
 let a = ab.range(0, 2, 0.5);
@@ -20,4 +13,3 @@ console.log(b.string());
 const slice = Array(b.ndim()).fill(ab.Range(2, 6, 1));
 let c = b.slice(slice);
 console.log(c.string());
-```
