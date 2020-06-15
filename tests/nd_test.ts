@@ -1,7 +1,7 @@
 import * as ab from "../nd.ts";
 
 let a = ab.arange(0, 2, 0.5);
-console.log(a.string());
+console.log(a);
 
 a = a.reshape([2, 2]);
 console.log(a.string());

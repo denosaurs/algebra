@@ -44,6 +44,10 @@ export abstract class ndarray<T> {
   abstract meanAxis(axis: number): number;
   abstract allClose(rhs: ndarray<T>, epsilon: number): boolean;
   abstract diag(): ndarray<T>;
+
+  [Deno.customInspect]() {
+    return this.string();
+  }
 }
 
 export type Shape = number[];
