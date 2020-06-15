@@ -15,7 +15,8 @@ lto = true
 opt-level = 's'
 
 [dependencies]
-ndarray = { version = "0.13.0", features = ["serde"] }
+ndarray = { version = "0.13.0", features = ["serde", "approx"] }
+approx = "0.3.2"
 wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
 js-sys = "0.3.40"
 serde = "^1.0.59"

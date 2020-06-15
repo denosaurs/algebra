@@ -6,7 +6,7 @@ interface raw<T> {
   data: number[];
 }
 
-export class ndarray<T> {
+export abstract class ndarray<T> {
   __raw: raw<T>;
 
   constructor(array: raw<T>) {
@@ -14,59 +14,36 @@ export class ndarray<T> {
   }
 
   // info
-  ndim(): number {
-    throw new Error("not implemented");
-  }
-
-  len(): number {
-    throw new Error("not implemented");
-  }
-
-  shape(): Shape {
-    throw new Error("not implemented");
-  }
-
-  lenOf(axis: Axis): number {
-    throw new Error("not implemented");
-  }
-
-  strides(): Stride[] {
-    throw new Error("not implemented");
-  }
-
-  empty(): boolean {
-    throw new Error("not implemented");
-  }
+  abstract ndim(): number;
+  abstract len(): number;
+  abstract shape(): Shape;
+  abstract lenOf(axis: Axis): number;
+  abstract strides(): Stride[];
+  abstract empty(): boolean;
 
   // indexing & slicing
-  idx(index: number | Idx[]): number {
-    throw new Error("not implemented");
-  }
-
-  slice(info: RangeOrIndex[]): ndarray<T> {
-    throw new Error("not implemented");
-  }
-
-  reshape(shape: Shape): ndarray<T> {
-    throw new Error("not implemented");
-  }
-
-  transpose(): ndarray<T> {
-    throw new Error("not implemented");
-  }
-
+  abstract idx(index: number | Idx[]): number;
+  abstract slice(info: RangeOrIndex[]): ndarray<T>;
+  abstract reshape(shape: Shape): ndarray<T>;
+  abstract transpose(): ndarray<T>;
   T(): ndarray<T> {
     return this.transpose();
   }
-
-  string(): string {
-    throw new Error("not implemented");
-  }
+  abstract string(): string;
 
   // operations
-  dot(rhs: ndarray<T>): ndarray<T> {
-    throw new Error("not implemented");
-  }
+  abstract dot(rhs: ndarray<T>): ndarray<T>;
+  abstract sum(rhs: ndarray<T> | number): ndarray<T>;
+  abstract sub(rhs: ndarray<T> | number): ndarray<T>;
+  abstract mul(rhs: ndarray<T> | number): ndarray<T>;
+  abstract div(rhs: ndarray<T> | number): ndarray<T>;
+  abstract map(fn: (val: number) => number): ndarray<T>;
+  abstract sumAll(): number;
+  abstract sumAxis(axis: number): number;
+  abstract mean(): number;
+  abstract meanAxis(axis: number): number;
+  abstract allClose(rhs: ndarray<T>, epsilon: number): boolean;
+  abstract diag(): ndarray<T>;
 }
 
 export type Shape = number[];

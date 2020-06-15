@@ -1,4 +1,18 @@
 import * as ab from "../nd.ts";
 
-let A = ab.random([2, 2]);
-console.log(A.dot(A.T()).string());
+let a = ab.arange(0, 2, 0.5);
+console.log(a.string());
+
+a = a.reshape([2, 2]);
+console.log(a.string());
+console.log(a.idx([1, 1]));
+
+let b = ab.random([8, 8, 8]);
+console.log(b.string());
+
+const slice = Array(b.ndim()).fill(ab.Range(2, 6, 1));
+let c = b.slice(slice);
+console.log(c.string());
+
+let d = ab.array([]);
+console.log(d.mean());

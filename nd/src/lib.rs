@@ -4,6 +4,7 @@
 // https://rustwasm.github.io/docs/wasm-bindgen/reference/arbitrary-data-with-serde.html
 
 extern crate ndarray;
+extern crate approx;
 extern crate serde_derive;
 
 extern crate js_sys;

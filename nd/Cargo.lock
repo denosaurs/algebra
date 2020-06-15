@@ -4,11 +4,21 @@
 name = "algebra_nd"
 version = "0.1.0"
 dependencies = [
+ "approx",
  "js-sys",
  "ndarray",
  "serde",
  "serde_derive",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "approx"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0e60b75072ecd4168020818c0107f2857bb6c4e64252d8d3983f6263b40a5c3"
+dependencies = [
+ "num-traits",
 ]
 
 [[package]]
@@ -74,6 +84,7 @@ version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ac06db03ec2f46ee0ecdca1a1c34a99c0d188a0d83439b84bf0cb4b386e4ab09"
 dependencies = [
+ "approx",
  "matrixmultiply",
  "num-complex",
  "num-integer",

@@ -61,7 +61,7 @@ pub fn eye(shape: usize) -> JsValue {
   JsValue::from_serde(&mat).unwrap()
 }
 
-#[wasm_bindgen(js_name = ndarray_f32_diag)]
+#[wasm_bindgen(js_name = ndarray_f32_from_diag)]
 pub fn diag(ndarray: JsValue) -> JsReturn {
   let mat = js_into!(ndarray, Array<f32, Ix1>)?;
   let mat: Array<f32, _> = Array::from_diag(&mat);
