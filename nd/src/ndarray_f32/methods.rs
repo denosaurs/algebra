@@ -5,28 +5,22 @@ use wasm_bindgen::prelude::*;
 
 use ndarray::{Ix, SliceInfo};
 
+use crate::ndarray_helpers::JsReturn;
 use crate::ndarray_slice::new_slice_info;
 
 //
 // array methods
 //
 #[wasm_bindgen(js_name = ndarray_f32_index)]
-pub fn index(ndarray: JsValue, index: JsValue) -> f32 {
-  let index: Vec<Ix> = index.into_serde().expect_throw("Index is not valid.");
-  let mat: ArrayD<f32> = ndarray
-    .into_serde()
-    .expect_throw("Self(ndarrayf32) is not valid.");
-  mat[IxDyn(&index)]
+pub fn index(ndarray: JsValue, index: JsValue) -> JsReturn<f32> {
+  let index = js_into!(index, Vec<Ix>)?;
+  let mat = js_into!(ndarray, ArrayD<f32>)?;
+  Ok(mat[IxDyn(&index)])
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_slice)]
-pub fn slice(
-  ndarray: JsValue,
-  slice_info: Vec<JsValue>,
-) -> Result<JsValue, JsValue> {
-  let mat: ArrayD<f32> = ndarray
-    .into_serde()
-    .expect_throw("Self(ndarrayf32) is not valid.");
+pub fn slice(ndarray: JsValue, slice_info: Vec<JsValue>) -> JsReturn {
+  let mat = js_into!(ndarray, ArrayD<f32>)?;
   let slice_info = new_slice_info(slice_info)
     .expect_throw("Cannot generate slice info from provided params.");
   let slice_info: SliceInfo<_, IxDyn> = match SliceInfo::new(slice_info) {
@@ -41,11 +35,9 @@ pub fn slice(
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_reshape)]
-pub fn reshape(ndarray: JsValue, shape: JsValue) -> Result<JsValue, JsValue> {
-  let shape: Vec<Ix> = shape.into_serde().expect_throw("Shape is not valid.");
-  let mat: ArrayD<f32> = ndarray
-    .into_serde()
-    .expect_throw("Self(ndarrayf32) is not valid.");
+pub fn reshape(ndarray: JsValue, shape: JsValue) -> JsReturn {
+  let shape = js_into!(shape, Vec<Ix>)?;
+  let mat = js_into!(ndarray, ArrayD<f32>)?;
   let mat = match mat.into_shape(shape) {
     Ok(mat) => mat,
     Err(e) => return Err(js_error!("{}", e.to_string())),
@@ -54,18 +46,14 @@ pub fn reshape(ndarray: JsValue, shape: JsValue) -> Result<JsValue, JsValue> {
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_transpose)]
-pub fn transpose(ndarray: JsValue) -> Result<JsValue, JsValue> {
-  let mat: ArrayD<f32> = ndarray
-    .into_serde()
-    .expect_throw("Self(ndarrayf32) is not valid.");
+pub fn transpose(ndarray: JsValue) -> JsReturn {
+  let mat = js_into!(ndarray, ArrayD<f32>)?;
   let mat = mat.t();
   Ok(JsValue::from_serde(&mat).unwrap())
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_format)]
-pub fn format(ndarray: JsValue) -> String {
-  let mat: ArrayD<f32> = ndarray
-    .into_serde()
-    .expect_throw("Self(ndarrayf32) is not valid.");
-  format!("{}", mat)
+pub fn format(ndarray: JsValue) -> JsReturn<String> {
+  let mat = js_into!(ndarray, ArrayD<f32>)?;
+  Ok(format!("{}", mat))
 }

@@ -183,7 +183,15 @@ export function diag(
 export function random(
   shape: Shape,
 ): ndarrayf32 {
-  return new ndarrayf32(ndarray_f32_random(shape));
+  return new ndarrayf32({
+    v: 1,
+    dim: shape,
+    data: Array.from({
+      length: shape.reduce((a, b) => a * b),
+    }, () => {
+      return Math.random();
+    }),
+  });
 }
 
 export function dot(lhs: ndarrayf32, rhs: ndarrayf32) {

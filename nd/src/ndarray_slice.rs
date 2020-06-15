@@ -8,8 +8,8 @@ use crate::AlgebraError;
 
 /// Get slice from js array
 /// js array should be in the form of `[start: number, end: number, step: number]`
-fn slice_info_slice(slice: &Vec<isize>) -> Result<SliceOrIndex, AlgebraError> {
-  if slice.len() < 1 {
+fn slice_info_slice(slice: &[isize]) -> Result<SliceOrIndex, AlgebraError> {
+  if slice.is_empty() {
     return Err(AlgebraError);
   }
   Ok(SliceOrIndex::Slice {

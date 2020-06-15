@@ -3,9 +3,8 @@
 use ndarray::prelude::*;
 use wasm_bindgen::prelude::*;
 
+use crate::ndarray_helpers::JsReturn;
 use ndarray::Ix;
-use ndarray_rand::RandomExt;
-use rand::distributions::Uniform;
 
 //
 // array creation
@@ -36,24 +35,24 @@ pub fn geomspace(start: f32, end: f32, n: usize) -> JsValue {
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_ones)]
-pub fn ones(shape: JsValue) -> JsValue {
-  let shape: Vec<Ix> = shape.into_serde().expect_throw("Shape is not valid.");
+pub fn ones(shape: JsValue) -> JsReturn {
+  let shape = js_into!(shape, Vec<Ix>)?;
   let mat: ArrayD<f32> = ArrayD::ones(IxDyn(&shape));
-  JsValue::from_serde(&mat).unwrap()
+  Ok(JsValue::from_serde(&mat).unwrap())
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_zeros)]
-pub fn zeros(shape: JsValue) -> JsValue {
-  let shape: Vec<Ix> = shape.into_serde().expect_throw("Shape is not valid.");
+pub fn zeros(shape: JsValue) -> JsReturn {
+  let shape = js_into!(shape, Vec<Ix>)?;
   let mat: ArrayD<f32> = ArrayD::zeros(IxDyn(&shape));
-  JsValue::from_serde(&mat).unwrap()
+  Ok(JsValue::from_serde(&mat).unwrap())
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_from_el)]
-pub fn from_el(shape: JsValue, element: f32) -> JsValue {
-  let shape: Vec<Ix> = shape.into_serde().expect_throw("Shape is not valid.");
+pub fn from_el(shape: JsValue, element: f32) -> JsReturn {
+  let shape = js_into!(shape, Vec<Ix>)?;
   let mat: ArrayD<f32> = ArrayD::from_elem(IxDyn(&shape), element);
-  JsValue::from_serde(&mat).unwrap()
+  Ok(JsValue::from_serde(&mat).unwrap())
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_eye)]
@@ -63,17 +62,17 @@ pub fn eye(shape: usize) -> JsValue {
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_diag)]
-pub fn diag(ndarray: JsValue) -> JsValue {
-  let mat: Array<f32, _> =
-    ndarray.into_serde().expect_throw("Diagonal is not valid.");
+pub fn diag(ndarray: JsValue) -> JsReturn {
+  let mat = js_into!(ndarray, Array<f32, Ix1>)?;
   let mat: Array<f32, _> = Array::from_diag(&mat);
-  JsValue::from_serde(&mat).unwrap()
+  Ok(JsValue::from_serde(&mat).unwrap())
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_random)]
-pub fn random(shape: JsValue) -> JsValue {
-  let shape: Vec<Ix> = shape.into_serde().expect_throw("Shape is not valid.");
+pub fn random(shape: JsValue) -> JsReturn {
+  let shape = js_into!(shape, Vec<Ix>)?;
   // TODO(qu4k): look into distribution types
-  let mat: ArrayD<f32> = ArrayD::random(IxDyn(&shape), Uniform::new(0., 1.));
-  JsValue::from_serde(&mat).unwrap()
+  let mat: ArrayD<f32> =
+    ArrayD::from_shape_simple_fn(shape, || js_sys::Math::random() as f32);
+  Ok(JsValue::from_serde(&mat).unwrap())
 }

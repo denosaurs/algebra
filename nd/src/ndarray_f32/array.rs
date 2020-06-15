@@ -3,6 +3,7 @@
 use ndarray::prelude::*;
 use wasm_bindgen::prelude::*;
 
+use crate::ndarray_helpers::JsReturn;
 use ndarray::arr1;
 
 //
@@ -21,10 +22,8 @@ pub fn array1(array: Vec<f32>) -> JsValue {
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_arr2)]
-pub fn array2(array: JsValue) -> Result<JsValue, JsValue> {
-  let array: Vec<Vec<f32>> = array
-    .into_serde()
-    .expect_throw("Array should be a number[][]");
+pub fn array2(array: JsValue) -> JsReturn {
+  let array: Vec<Vec<f32>> = js_into!(array, Vec<Vec<f32>>)?;
   let mut flattened = vec![];
 
   let x = array.len();
@@ -49,10 +48,8 @@ pub fn array2(array: JsValue) -> Result<JsValue, JsValue> {
 }
 
 #[wasm_bindgen(js_name = ndarray_f32_arr3)]
-pub fn array3(array: JsValue) -> Result<JsValue, JsValue> {
-  let array: Vec<Vec<Vec<f32>>> = array
-    .into_serde()
-    .expect_throw("Array should be a number[][][]");
+pub fn array3(array: JsValue) -> JsReturn {
+  let array = js_into!(array, Vec<Vec<Vec<f32>>>)?;
   let mut flattened = vec![];
 
   let x = array.len();

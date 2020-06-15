@@ -3,7 +3,7 @@
 interface raw<T> {
   v: number;
   dim: Shape;
-  data: T;
+  data: number[];
 }
 
 export class ndarray<T> {
